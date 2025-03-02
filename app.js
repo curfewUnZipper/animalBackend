@@ -70,7 +70,6 @@ app.post('/register',async(req,res)=>{
 });
 
 app.post("/login-user",async(req,res)=>{
-    console.log("login post recieved");
     const {email,password}=req.body;
     const oldUser=await User.findOne({email:email});
 

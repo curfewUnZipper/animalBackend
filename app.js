@@ -3,6 +3,7 @@ const app=express();
 const mongoose=require("mongoose");
 app.use(express.json());
 const bcrypt=require("bcryptjs");
+var cors = require("cors");
 const jwt=require('jsonwebtoken');
 const mongoUrl=
  "mongodb+srv://nethrasuresh26:Nethra25@cluster0.09zqw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
@@ -19,6 +20,26 @@ require('./AnimalDetails');
 
 const User=mongoose.model("UserInfo");
 const Animal=mongoose.model("AnimalInfo");
+
+app.use(cors());
+const allowedOrigins = [
+  "https://cloudscript-one.vercel.app",
+  "http://192.168.0.150:5005"
+];
+
+// app.use(
+//   cors({
+//     origin: function (origin, callback) {
+//       if (!origin || allowedOrigins.includes(origin)) {
+//         callback(null, true);
+//       } else {
+//         callback(new Error("Not allowed by CORS"));
+//       }
+//     },
+//     credentials: true,
+//   })
+// );
+
 
 app.get("/",(req,res)=> {
     res.send({status:"started"})
